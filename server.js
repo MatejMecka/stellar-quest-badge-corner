@@ -5,6 +5,7 @@
 // but feel free to use whatever libraries or frameworks you'd like through `package.json`.
 const express = require("express");
 const bodyParser = require('body-parser')
+const StellarSdk = require('stellar-sdk');
 const app = express();
 
 // our default array of dreams
@@ -18,6 +19,7 @@ const dreams = [
 // https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // https://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
@@ -25,7 +27,8 @@ app.get("/", (request, response) => {
 });
 
 app.post("/verify", (request, response) => {
-  console.log(request)
+  console.log(request.body)
+  let public_key = request.body["pubkey"]
   response.json({"nesho":"nesho"});
 });
 
