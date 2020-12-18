@@ -13,7 +13,6 @@
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-4ZPLezkTZTsojWFhpdFembdzFudphhoOzIunR1wH6g1WQDzCAiPvDyitaK67mp0+" crossorigin="anonymous">
     <script src="https://unpkg.com/@albedo-link/intent/lib/albedo.intent.js"></script>
     <!-- import the webpage's client-side javascript file -->
     <script src="/script.js" defer></script>
@@ -28,7 +27,16 @@
 
       <p>You may be wondering what this page is. Just give me access to your Albedo public link ;)</p>
       
-      <button id="#btn"></button>
+      <script src="https://albedo.link/albedo-intent-button.js"
+        x-intent="public_key"
+        x-token="xXgFia/iC1FKTs4v95J4w3f1CWUSt9bRJNKWvdt+QxM="
+        x-callback="url:/verify"
+        x-height="30"
+        x-width="200"
+        x-class-name="albedo-button"
+        x-title="sign transaction" 
+        async>
+      </script>
     </main>
 
 
