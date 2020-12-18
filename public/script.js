@@ -15,6 +15,7 @@ function appendNewDream(dream) {
 }
 
 // fetch the initial list of dreams
+/*
 fetch("/dreams")
   .then(response => response.json()) // parse the JSON from the server
   .then(dreams => {
@@ -39,3 +40,16 @@ fetch("/dreams")
       dreamsForm.elements.dream.focus();
     });
   });
+*/
+
+document.getElementById('#btn').addEventListener('click', () => {
+  albedo.pay({
+    amount: '10',
+    destination: 'GCKOQGMTULKR55EWNHAXXJLTL25J3LT6BHHLBMDAVFKX3E32PCYVBO7M',
+    asset_code: 'TST',
+    asset_issuer: 'GBX6YUG3KCUEOBZRPN7TXBLMNXDW35XJOKDYFYIISDKDW4Y63LBCW6EI',
+    network: 'testnet'
+  })
+    .then(res => console.log(res)) // everything is ok, parse response here
+    .catch(e => console.error(e))  // handle errors or user's rejection
+})
