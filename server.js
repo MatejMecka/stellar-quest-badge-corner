@@ -4,6 +4,7 @@
 // we've started you off with Express (https://expressjs.com/)
 // but feel free to use whatever libraries or frameworks you'd like through `package.json`.
 const express = require("express");
+const bodyParser = require('body-parser')
 const app = express();
 
 // our default array of dreams
@@ -16,6 +17,7 @@ const dreams = [
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
+app.use(bodyParser.json());
 
 // https://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
@@ -23,7 +25,8 @@ app.get("/", (request, response) => {
 });
 
 app.post("/verify", (request, response) => {
-  response.send(request);
+  console.log(request)
+  response.json({"nesho":"nesho"});
 });
 
 // send the default array of dreams to the webpage
