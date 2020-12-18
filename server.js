@@ -9,6 +9,7 @@ const StellarSdk = require('stellar-sdk');
 const app = express();
 
 const server = new StellarSdk.Server('https://horizon.stellar.org');
+var balances = ["SQ0101", "SQ0102", "SQ0103", "SQ0104", "SQ0105", "SQ0106", "SQ0107", "SQ0108", "SSQ01", "SQ0201", "SQ0202"]
 
 // our default array of dreams
 const dreams = [
@@ -33,8 +34,21 @@ app.post("/verify", (request, response) => {
   let public_key = request.body["pubkey"]
   
   server.accounts()
-    .forAccount(public_key)
-    .call().then(function(r){ console.log(r); });
+    .accountId(public_key)
+    .call().then(
+    function(r){ 
+      var counter = 0
+      var found_badges = []
+      for(var i=0; i < r["balances"].length; i++){
+        if(balances.indexOf(r["balances"][i]["asset_code"]) != -1){
+          found_badges.push(r["balances"][i]["asset_code"])
+          counter++
+        }
+      }; 
+      if(counter > r["balances"].length){
+        response.json({"badges": found_badges})
+      }
+    });
   
   
   response.json({"nesho":"nesho"});
