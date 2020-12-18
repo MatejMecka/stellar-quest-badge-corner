@@ -45,13 +45,18 @@ app.post("/verify", (request, response) => {
           counter++
         }
       }; 
-      if(counter > r["balances"].length){
-        response.json({"badges": found_badges})
+      console.log(counter)
+      console.log(balances.length)
+      if(counter > balances.length){
+        //response.json({"badges": found_badges})
+        response.sendFile(__dirname + "/views/success.html");
+      } else {
+        response.sendFile(__dirname + "/views/fail.html");
       }
     });
   
-  
-  response.json({"nesho":"nesho"});
+  response.sendFile(__dirname + "/views/fail.html");
+  //response.json({"nesho":"nesho"});
 });
 
 // send the default array of dreams to the webpage
