@@ -8,6 +8,8 @@ const bodyParser = require('body-parser')
 const StellarSdk = require('stellar-sdk');
 const app = express();
 
+const server = new StellarSdk.Server('https://horizon.stellar.org');
+
 // our default array of dreams
 const dreams = [
   "Find and count some sheep",
@@ -29,6 +31,12 @@ app.get("/", (request, response) => {
 app.post("/verify", (request, response) => {
   console.log(request.body)
   let public_key = request.body["pubkey"]
+  
+  server.accounts()
+    .forAccount(public_key)
+    .call().then(function(r){ console.log(r); });
+  
+  
   response.json({"nesho":"nesho"});
 });
 
